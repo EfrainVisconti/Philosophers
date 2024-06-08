@@ -6,7 +6,7 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:17:43 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/08 02:09:40 by usuario          ###   ########.fr       */
+/*   Updated: 2024/06/08 17:07:12 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define PHILO_MAX 200;
+# define PHILO_MAX 200
 
 typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
 	int				meals;
-	size_t			last_meal;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
+	size_t			last_meal; //time
+	size_t			start_time;
+	pthread_mutex_t	*my_fork;
+	pthread_mutex_t	*left_fork;
 	struct s_data	*data;
 }					t_philo;
 
@@ -38,15 +39,17 @@ typedef struct s_data
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
-	size_t			start_time;
-	int				nbr_eat;
+	int				nbr_meals;
 	int				dead_flag;
 	pthread_mutex_t	lock_dead;
-	t_philo			*philos;
+	t_philo			*philo;
 }					t_data;
 
 //utils
 int	check_input(char **argv);
 int	ft_atoi(const char *str);
+size_t	get_current_time(void);
+int	ft_usleep(size_t milliseconds);
+
 
 #endif

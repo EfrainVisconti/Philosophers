@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+         #
+#    By: usuario <usuario@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 18:53:27 by eviscont          #+#    #+#              #
-#    Updated: 2024/06/06 20:10:25 by eviscont         ###   ########.fr        #
+#    Updated: 2024/06/08 12:29:54 by usuario          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@echo "$(YELLOW)Compiling...$<$(NC)"
 	@gcc $(CFLAGS) -c -o $@ $<
-	@echo "$(YELLOW)Done!$(NC)"
 
 # Eliminar temporales
 clean:
