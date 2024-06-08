@@ -6,15 +6,44 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:31:56 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/08 17:08:17 by usuario          ###   ########.fr       */
+/*   Updated: 2024/06/08 23:26:23 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/philo.h"
 
-void	*routine(void *arg)
+void	*philo_routine(void *arg)
 {
-	
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	pthread_mutex_lock(philo->my_fork);
+    printf("id: %i Enter to his fork\n", philo->id);
+    pthread_mutex_unlock(philo->my_fork);
+	pthread_mutex_lock(philo->left_fork);
+    printf("id: %i Enter to his left fork\n", philo->id);
+    pthread_mutex_unlock(philo->left_fork);
+	return (arg);
+}
+
+void	create_threads(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo[0].data->nbr_philos)
+	{
+		if (pthread_create(&philo[i].thread, NULL, &philo_routine, &philo[i]) != 0)
+            printf("Failed to create thread");
+		i++;
+	}
+	i = 0;
+	while (i < philo[0].data->nbr_philos)
+	{
+		if (pthread_join(philo[i].thread, NULL) != 0)
+			printf("Failed to join thread");
+		i++;
+	}
 }
 
 void	init_forks(pthread_mutex_t *forks, int n_philos)
@@ -83,13 +112,7 @@ int	main(int argc, char **argv)
 		return (printf("Too many philosophers\n"), 3);
 	init_data(argv, &data);
 	init_philos(argv[1], philo, &data, forks);
-	//while (i < ft_atoi(argv[1]))
-	//{
-	//	printf("%i, %li, %li, %i\n", philo[i].id, philo[i].last_meal, philo[i].data->time_to_die, (&data)->philo[i].id);
-	//	if (philo[i].my_fork != NULL)
-	//		printf("my_fork %p and fork_left %p\n", philo[i].my_fork, philo[i].left_fork);
-	//	i++;
-	//}
+	create_threads(philo);
 	pthread_mutex_destroy(&(&data)->lock_dead);
 	while (i < (&data)->nbr_philos)
 		pthread_mutex_destroy(&forks[i++]);
