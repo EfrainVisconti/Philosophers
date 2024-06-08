@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+        */
+/*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:31:56 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/06 20:50:18 by eviscont         ###   ########.fr       */
+/*   Updated: 2024/06/08 01:20:49 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 		return (printf("Invalid arguments\n"), 1);
 	if (check_input(argv) == 1)
 		return (printf("Invalid character in input\n"), 2);
-	if (ft_atoi(argv[1]) > 200)
+	if (ft_atoi(argv[1]) > PHILO_MAX)
 		return (printf("Too many philosophers\n"), 3);
 	return (0);
 }
