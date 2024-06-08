@@ -6,7 +6,7 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:17:43 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/08 01:57:37 by usuario          ###   ########.fr       */
+/*   Updated: 2024/06/08 02:09:40 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_data
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			start_time;
-	int				nbr_times_eat;
+	int				nbr_eat;
 	int				dead_flag;
 	pthread_mutex_t	lock_dead;
 	t_philo			*philos;
