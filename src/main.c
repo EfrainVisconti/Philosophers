@@ -6,45 +6,11 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:31:56 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/08 23:26:23 by usuario          ###   ########.fr       */
+/*   Updated: 2024/06/09 16:52:48 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/philo.h"
-
-void	*philo_routine(void *arg)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)arg;
-	pthread_mutex_lock(philo->my_fork);
-    printf("id: %i Enter to his fork\n", philo->id);
-    pthread_mutex_unlock(philo->my_fork);
-	pthread_mutex_lock(philo->left_fork);
-    printf("id: %i Enter to his left fork\n", philo->id);
-    pthread_mutex_unlock(philo->left_fork);
-	return (arg);
-}
-
-void	create_threads(t_philo *philo)
-{
-	int	i;
-
-	i = 0;
-	while (i < philo[0].data->nbr_philos)
-	{
-		if (pthread_create(&philo[i].thread, NULL, &philo_routine, &philo[i]) != 0)
-            printf("Failed to create thread");
-		i++;
-	}
-	i = 0;
-	while (i < philo[0].data->nbr_philos)
-	{
-		if (pthread_join(philo[i].thread, NULL) != 0)
-			printf("Failed to join thread");
-		i++;
-	}
-}
 
 void	init_forks(pthread_mutex_t *forks, int n_philos)
 {

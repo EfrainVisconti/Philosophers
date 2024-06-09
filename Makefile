@@ -6,7 +6,7 @@
 #    By: usuario <usuario@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 18:53:27 by eviscont          #+#    #+#              #
-#    Updated: 2024/06/08 12:29:54 by usuario          ###   ########.fr        #
+#    Updated: 2024/06/09 16:52:20 by usuario          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CFLAGS = -Wall -Wextra -Werror -pthread #-g3 -fsanitize=thread
 NAME = philo
 
 # Ficheros
-SRC_FILES = main utils
+SRC_FILES = main utils philo
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
