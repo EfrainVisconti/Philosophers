@@ -6,11 +6,20 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 20:07:22 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/08 15:32:42 by usuario          ###   ########.fr       */
+/*   Updated: 2024/06/10 00:03:33 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/philo.h"
+
+void	print_aux(char *str, t_philo *philo)
+{
+	size_t	time;
+	
+	time = get_current_time() - philo->start_time;
+	if (check_dead(philo) == 0)
+		printf("%zu %d %s\n", time, philo->id, str);
+}
 
 int	ft_usleep(size_t milliseconds)
 {

@@ -6,7 +6,7 @@
 /*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:17:43 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/09 16:55:33 by usuario          ###   ########.fr       */
+/*   Updated: 2024/06/10 02:30:21 by usuario          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ int	check_input(char **argv);
 int	ft_atoi(const char *str);
 size_t	get_current_time(void);
 int	ft_usleep(size_t milliseconds);
+void	print_aux(char *str, t_philo *philo);
 
 //philo
 void	create_threads(t_philo *philo);
 void	*philo_routine(void *arg);
 void	eating_routine(t_philo *philo);
+int	check_dead(t_philo *philo);
 
 #endif
