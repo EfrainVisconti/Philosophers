@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:54:10 by usuario           #+#    #+#             */
-/*   Updated: 2024/06/09 16:54:44 by usuario          ###   ########.fr       */
+/*   Updated: 2024/06/10 12:40:47 by eviscont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	eating_routine(t_philo *philo)
 		printf("%li %i has taken a fork\n", get_current_time(), philo->id);
 		pthread_mutex_lock(philo->left_fork);
 		printf("%li %i has taken a fork\n", get_current_time(), philo->id);
-		printf("%li %i is eating\n", get_current_time(), philo->id);
 		philo->last_meal = get_current_time();
+		printf("%li %i is eating\n", get_current_time(), philo->id);
 		ft_usleep(philo->data->time_to_eat);
 		pthread_mutex_unlock(philo->my_fork);
 		pthread_mutex_unlock(philo->left_fork);
