@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:17:43 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/09 16:55:33 by usuario          ###   ########.fr       */
+/*   Updated: 2024/06/10 20:53:03 by eviscont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	int				id;
 	int				meals;
-	size_t			last_meal; //time
+	size_t			last_meal;
 	size_t			start_time;
 	pthread_mutex_t	*my_fork;
 	pthread_mutex_t	*left_fork;
@@ -41,19 +41,22 @@ typedef struct s_data
 	size_t			time_to_sleep;
 	int				nbr_meals;
 	int				dead_flag;
+	int				start_flag;
 	pthread_mutex_t	lock_dead;
 	t_philo			*philo;
 }					t_data;
 
 //utils
-int	check_input(char **argv);
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
+int		check_input(char **argv);
 size_t	get_current_time(void);
-int	ft_usleep(size_t milliseconds);
+void	ft_usleep(size_t milliseconds);
+void	print_aux(char *str, t_philo *philo);
 
 //philo
-void	create_threads(t_philo *philo);
+void	create_threads(t_philo *philo, int i);
 void	*philo_routine(void *arg);
 void	eating_routine(t_philo *philo);
+int		check_dead(t_philo *philo);
 
 #endif

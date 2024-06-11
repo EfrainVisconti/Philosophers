@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: usuario <usuario@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 20:07:22 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/08 15:32:42 by usuario          ###   ########.fr       */
+/*   Updated: 2024/06/10 20:52:55 by eviscont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/philo.h"
 
-int	ft_usleep(size_t milliseconds)
+void	print_aux(char *str, t_philo *philo)
+{
+	size_t	time;
+
+	time = get_current_time() - philo->start_time;
+	if (!check_dead(philo))
+		printf("%zu %d %s\n", time, philo->id, str);
+}
+
+void	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
 
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
 		usleep(500);
-	return (0);
 }
 
 size_t	get_current_time(void)
