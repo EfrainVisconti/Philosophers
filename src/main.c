@@ -6,11 +6,18 @@
 /*   By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:31:56 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/10 20:53:17 by eviscont         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:38:59 by eviscont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/philo.h"
+
+void	set_start(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->lock_start);
+	philo->data->start_flag = 1;
+	pthread_mutex_unlock(&philo->data->lock_start);
+}
 
 void	init_forks(pthread_mutex_t *forks, int n_philos)
 {
@@ -56,12 +63,14 @@ void	init_data(char	**argv, t_data *data)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5] != NULL)
-		data->nbr_meals = ft_atoi(argv[5]);
+		data->n_eat = ft_atoi(argv[5]);
 	else
-		data->nbr_meals = 0;
+		data->n_eat = 0;
 	data->dead_flag = 0;
 	data->start_flag = 0;
 	pthread_mutex_init(&data->lock_dead, NULL);
+	pthread_mutex_init(&data->lock_write, NULL);
+	pthread_mutex_init(&data->lock_start, NULL);
 }
 
 int	main(int argc, char **argv)
@@ -83,6 +92,8 @@ int	main(int argc, char **argv)
 	init_philos(argv[1], philo, &data, forks);
 	create_threads(philo, -1);
 	pthread_mutex_destroy(&(&data)->lock_dead);
+	pthread_mutex_destroy(&(&data)->lock_write);
+	pthread_mutex_destroy(&(&data)->lock_start);
 	while (i < (&data)->nbr_philos)
 		pthread_mutex_destroy(&forks[i++]);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:54:10 by usuario           #+#    #+#             */
-/*   Updated: 2024/06/10 20:51:46 by eviscont         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:39:44 by eviscont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	while (!philo->data->start_flag)
-		;
+		ft_usleep(10);
 	if (philo->id % 2 == 0)
-		ft_usleep(1);
+		ft_usleep(philo->data->time_to_eat / 2);
 	while (!check_dead(philo))
 	{
 		eating_routine(philo);
-		if (!philo->data->nbr_meals || (philo->meals < philo->data->nbr_meals))
+		if (!philo->data->n_eat || (philo->meals < philo->data->n_eat))
 			philo->meals++;
 		else
 			break ;
@@ -72,30 +72,30 @@ void	*philo_routine(void *arg)
 	return (arg);
 }
 
-void	create_threads(t_philo *philo, int i)
+void	create_threads(t_philo *p, int i)
 {
-	while (++i < philo->data->nbr_philos)
+	while (++i < p->data->nbr_philos)
 	{
-		if (pthread_create(&(philo[i].thread), NULL, &philo_routine, &philo[i]) != 0)
-            printf("Failed to create thread");
+		if (pthread_create(&(p[i].thread), NULL, &philo_routine, &p[i]))
+			printf("Failed to create thread");
 	}
-	philo->data->start_flag = 1;
-	while (!check_dead(philo) && (!philo->data->nbr_meals || (philo->meals < philo->data->nbr_meals)))
+	set_start(p);
+	while (!check_dead(p) && (!p->data->n_eat || (p->meals < p->data->n_eat)))
 	{
 		i = -1;
-		while (++i < philo->data->nbr_philos)
+		while (++i < p->data->nbr_philos)
 		{
-			if ((get_current_time() - philo[i].last_meal > philo->data->time_to_die))
+			if ((get_current_time() - p[i].last_meal > p->data->time_to_die))
 			{
-				print_aux("died", &philo[i]);
-				set_dead(philo);
+				print_aux("died", &p[i]);
+				set_dead(p);
 			}
 		}
 	}
 	i = -1;
-	while (++i < philo->data->nbr_philos)
+	while (++i < p->data->nbr_philos)
 	{
-		if (pthread_join(philo[i].thread, NULL) != 0)
+		if (pthread_join(p[i].thread, NULL) != 0)
 			printf("Failed to join thread");
 	}
 }

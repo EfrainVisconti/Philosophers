@@ -6,7 +6,7 @@
 /*   By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 20:07:22 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/10 20:52:55 by eviscont         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:40:15 by eviscont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void	print_aux(char *str, t_philo *philo)
 {
 	size_t	time;
 
+	pthread_mutex_lock(&philo->data->lock_write);
 	time = get_current_time() - philo->start_time;
 	if (!check_dead(philo))
 		printf("%zu %d %s\n", time, philo->id, str);
+	pthread_mutex_unlock(&philo->data->lock_write);
 }
 
 void	ft_usleep(size_t milliseconds)
@@ -27,7 +29,7 @@ void	ft_usleep(size_t milliseconds)
 
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
-		usleep(500);
+		usleep(100);
 }
 
 size_t	get_current_time(void)
