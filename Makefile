@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: usuario <usuario@student.42.fr>            +#+  +:+       +#+         #
+#    By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 18:53:27 by eviscont          #+#    #+#              #
-#    Updated: 2024/06/09 16:52:20 by usuario          ###   ########.fr        #
+#    Updated: 2024/06/11 18:38:18 by eviscont         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NC = \033[0m
 
 # Comandos
 # -g para debugear con lldb
-CFLAGS = -Wall -Wextra -Werror -pthread #-g3 -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 # Nombre ejecutable
 NAME = philo
