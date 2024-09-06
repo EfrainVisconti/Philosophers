@@ -6,7 +6,7 @@
 /*   By: eviscont <eviscont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:17:43 by eviscont          #+#    #+#             */
-/*   Updated: 2024/06/11 18:37:34 by eviscont         ###   ########.fr       */
+/*   Updated: 2024/09/06 15:22:30 by eviscont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define PHILO_MAX 200
+# define PHILO_MAX 1000
 
 typedef struct s_philo
 {
