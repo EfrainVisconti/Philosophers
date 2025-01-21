@@ -8,8 +8,7 @@ Mientras están pensando, no pueden dormir ni comer;
 Y, por supuesto, mientras están durmiendo, no pueden comer ni pensar.
 - También hay tenedores en la mesa, tantos tenedores como filósofos.
 - Porque coger y comer espaguetis con un solo tenedor puede ser incomodo, los filósofos deben tomar el tenedor de la derecha y el de la izquierda, uno en cada mano.
-- Cuándo un filósofo termine de comer, dejará los tenedores en la mesa e inmediata-
-mente empezará a dormir. Una vez se despierte, empezará a pensar nuevamente.
+- Cuándo un filósofo termine de comer, dejará los tenedores en la mesa e inmediatamente empezará a dormir. Una vez se despierte, empezará a pensar nuevamente.
 La simulación se detendrá cuando un filósofo muere por inanición.
 - Todos los filósofos necesitan comer y nunca deben morir de hambre.
 - Los filósofos no hablan entre ellos.
